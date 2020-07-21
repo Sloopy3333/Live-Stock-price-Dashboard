@@ -100,7 +100,7 @@ app.layout = html.Div(
                             placeholder="enter stock name",
                             style={"color": "#000000"},
                         ),
-                        width={"size": 3},
+                        width={"size": 4},
                     ),
                     # Graph selection dropdown
                     dbc.Col(
