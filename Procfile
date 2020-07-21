@@ -1,1 +1,1 @@
-web: gunicorn stock:server --timeout 300
+web: gunicorn stock:server
