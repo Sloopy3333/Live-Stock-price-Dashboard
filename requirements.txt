@@ -10,3 +10,7 @@ dash_table==4.8.1
 requests==2.24.0
 pandas==1.0.5
 dash_bootstrap_components==0.10.3
+talib==0.1.1
+
+
+
