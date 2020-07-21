@@ -10,4 +10,4 @@ dash_table==4.8.1
 requests==2.24.0
 pandas==1.0.5
 dash_bootstrap_components==0.10.3
- heroku create --buildpack https://github.com/aneesh-neelam/heroku-buildpack-python-talib.git
+heroku/python https://github.com/numrut/heroku-buildpack-python-talib
