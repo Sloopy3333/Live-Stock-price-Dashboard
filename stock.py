@@ -270,7 +270,7 @@ app.layout = html.Div(
                     id="loosers_graph",
                     figure={"data": loosers_data, "layout": l_layout},
                 ),
-                width={"size": 10, "offset": 1},
+                width={"size": 12},
             )
         ),
     ]
