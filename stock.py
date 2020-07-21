@@ -98,7 +98,6 @@ app.layout = html.Div(
                                 )
                             ),
                             placeholder="enter stock name",
-                            searchable=True,
                             style={"color": "#000000"},
                         ),
                         width={"size": 3},
