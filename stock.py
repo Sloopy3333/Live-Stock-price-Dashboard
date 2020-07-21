@@ -18,6 +18,8 @@ import numpy
 # defining style color
 colors = {"background": "#333333", "text": "#00FFFF"}
 
+with open("tickers.pickle", "rb") as f:
+    ticker_list = pickle.load(f)
 
 
 
@@ -79,9 +81,16 @@ app.layout = html.Div(
             dbc.Row(
                 [
                     dbc.Col(
-                        dbc.Input(
+                        dbc.Dropdown(
                             id="stock_name",
-                            type = "text",
+                            options=[
+                                {
+                                    "label": str(ticker_list[i]),
+                                    "value": str(ticker_list[i]),
+                                }
+                                for i in range(len(ticker_list))
+                            ],
+                            searchable=True, 
                             value=str(random.choice(
                                 ['tsla', 'GOOGL', 'F', 'GE', 'AAL', 'DIS', 'DAL', 'AAPL', 'MSFT', 'CCL', 'GPRO', 'ACB', 'PLUG', 'AMZN'])),
                             placeholder="enter stock name",
@@ -202,7 +211,7 @@ app.layout = html.Div(
                         "border": "#4d4d4d",
                     },
                 ),
-                width={"size": 10, "offset": 1},
+                width={"size": 12},
             )
         ),
         html.Br(),
@@ -213,7 +222,7 @@ app.layout = html.Div(
                 dcc.Graph(
                     id="gainers_graph", figure={"data": gainer_data, "layout": g_layout}
                 ),
-                width={"size": 10, "offset": 1},
+                width={"size": 12},
             )
         ),
         html.Div(html.Br()),
