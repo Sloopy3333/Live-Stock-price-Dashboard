@@ -8,6 +8,7 @@ import dash_table as dt
 import yahoo_fin.stock_info as yf
 from datetime import datetime, timedelta, date
 import plotly.graph_objs as go
+import pickle
 import numpy as np
 import pandas as pd
 import random
