@@ -8,4 +8,5 @@ dash_html_components==1.0.3
 dash_table==4.8.1
 dash_core_components==1.10.1
 numpy==1.19.0
-gunicorn>=19.7.1
+gunicorn==19.7.1
+requests==2.24.0 
