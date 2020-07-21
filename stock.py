@@ -46,7 +46,6 @@ external_stylesheets = [dbc.themes.DARKLY]
 # adding css
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
-# app.css.append_css({})
 
 app.layout = html.Div(
     [
