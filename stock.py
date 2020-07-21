@@ -258,7 +258,7 @@ app.layout = html.Div(
                         "border": "#4d4d4d",
                     },
                 ),
-                width={"size": 10, "offset": 1},
+                width={"size": 12},
             )
         ),
         html.Br(),
