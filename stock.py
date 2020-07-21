@@ -10,7 +10,6 @@ from datetime import datetime, timedelta, date
 import plotly.graph_objs as go
 import numpy as np
 import pandas as pd
-import talib
 import pickle
 import random
 import numpy
