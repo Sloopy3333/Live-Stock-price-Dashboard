@@ -18,10 +18,6 @@ import numpy
 colors = {"background": "#333333", "text": "#ffffff"}
 
 
-with open("https://github.com/SampathHN/Stock_screaner_dash/blob/master/tickers.pickle", "rb") as f:
-    ticker_list = pickle.load(f)
-
-
 # gainers of the day data and graph
 gainer_data = []
 gainers_df = yf.get_day_gainers()
@@ -79,15 +75,9 @@ app.layout = html.Div(
             dbc.Row(
                 [
                     dbc.Col(
-                        dcc.Dropdown(
+                        dcc.Input(
                             id="stock_name",
-                            options=[
-                                {
-                                    "label": str(ticker_list[i]),
-                                    "value": str(ticker_list[i]),
-                                }
-                                for i in range(len(ticker_list))
-                            ],
+                            type = 'text',
                             value=str(
                                 random.choice(
                                     [
