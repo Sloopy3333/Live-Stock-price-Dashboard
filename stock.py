@@ -82,7 +82,7 @@ app.layout = html.Div(
             dbc.Row(
                 [
                     dbc.Col(
-                        dbc.Dropdown(
+                        dcc.Dropdown(
                             id="stock_name",
                             options=[
                                 {
