@@ -10,12 +10,16 @@ from datetime import datetime, timedelta, date
 import plotly.graph_objs as go
 import numpy as np
 import pandas as pd
+import talib
 import pickle
 import random
 import numpy
-
 # defining style color
 colors = {"background": "#333333", "text": "#ffffff"}
+
+
+with open(r"https://github.com/SampathHN/Stock_screaner_dash/blob/master/tickers.pickle", "rb") as f:
+    ticker_list = pickle.load(f)
 
 
 # gainers of the day data and graph
@@ -26,7 +30,8 @@ g_layout = {
     "paper_bgcolor": colors["background"],
     "font": {"color": colors["text"]},
 }
-gainer_data.append(go.Bar(x=list(gainers_df.Symbol), y=list(gainers_df["% Change"])))
+gainer_data.append(go.Bar(x=list(gainers_df.Symbol),
+                          y=list(gainers_df["% Change"])))
 
 
 # loosers of the day data and graph
@@ -37,7 +42,8 @@ l_layout = {
     "paper_bgcolor": colors["background"],
     "font": {"color": colors["text"]},
 }
-loosers_data.append(go.Bar(x=list(loosers_df.Symbol), y=list(loosers_df["% Change"])))
+loosers_data.append(go.Bar(x=list(loosers_df.Symbol),
+                           y=list(loosers_df["% Change"])))
 
 
 external_stylesheets = [dbc.themes.DARKLY]
@@ -45,7 +51,8 @@ external_stylesheets = [dbc.themes.DARKLY]
 
 # adding css
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
-server = app.server
+
+# app.css.append_css({})
 
 app.layout = html.Div(
     [
@@ -74,33 +81,23 @@ app.layout = html.Div(
             dbc.Row(
                 [
                     dbc.Col(
-                        dcc.Input(
+                        dcc.Dropdown(
                             id="stock_name",
-                            type = 'text',
-                            value=str(
-                                random.choice(
-                                    [
-                                        "tsla",
-                                        "GOOGL",
-                                        "F",
-                                        "GE",
-                                        "AAL",
-                                        "DIS",
-                                        "DAL",
-                                        "AAPL",
-                                        "MSFT",
-                                        "CCL",
-                                        "GPRO",
-                                        "ACB",
-                                        "PLUG",
-                                        "AMZN",
-                                    ]
-                                )
-                            ),
+                            options=[
+                                {
+                                    "label": str(ticker_list[i]),
+                                    "value": str(ticker_list[i]),
+                                }
+                                for i in range(len(ticker_list))
+                            ],
+                            value=str(random.choice(
+                                ['tsla', 'GOOGL', 'F', 'GE', 'AAL', 'DIS', 'DAL', 'AAPL', 'MSFT', 'CCL', 'GPRO', 'ACB', 'PLUG', 'AMZN'])),
                             placeholder="enter stock name",
-                            style={"color": "#000000"},
+                            searchable=True,
+                            style = {'color':'#000000'}
                         ),
-                        width={"size": 4},
+                        width={"size": 3},
+
                     ),
                     # Graph selection dropdown
                     dbc.Col(
@@ -110,30 +107,31 @@ app.layout = html.Div(
                                 {"label": "line", "value": "Line"},
                                 {"label": "candlestick", "value": "Candlestick"},
                                 {"label": "Simple moving average", "value": "SMA"},
-                                {"label": "Exponential moving average", "value": "EMA"},
+                                {"label": "Exponential moving average",
+                                    "value": "EMA"},
                                 {"label": "MACD", "value": "MACD"},
                                 {"label": "RSI", "value": "RSI"},
                                 {"label": "OHLC", "value": "OHLC"},
                             ],
                             value="Line",
-                            style={"color": "#000000"},
+                            style = {'color':'#000000'}
                         ),
                         width={"size": 3},
                     ),
                     # submit button
                     dbc.Col(
-                        dbc.Button(
-                            "Plot",
-                            id="submit-button-state",
-                            className="mr-1",
-                            n_clicks=1,
-                        ),
+                        dbc.Button('Plot',
+                                   id="submit-button-state",
+                                   className="mr-1",
+                                   n_clicks=1,
+                                   ),
                         width={"size": 1},
-                    ),
+                    )
                 ],
                 justify="center",
             ),
             width={"size": 10, "offset": 1},
+
         ),
         # Graph
         html.Br(),
@@ -167,18 +165,15 @@ app.layout = html.Div(
                                             "border": "#4d4d4d",
                                         },
                                         style_cell_conditional=[
-                                            {
-                                                "if": {"column_id": "attribute"},
-                                                "width": "140",
-                                            },
-                                            {
-                                                "if": {"column_id": "value"},
-                                                "width": "150",
-                                            },
-                                        ],
+                                            {'if': {'column_id': 'attribute'},
+                                             'width': '140'},
+                                            {'if': {'column_id': 'value'},
+                                             'width': '150'}
+                                        ]
                                     )
                                 ]
                             ),
+
                         ]
                     ),
                 ),
@@ -300,7 +295,7 @@ def graph_genrator(n_clicks, ticker, chart_name):
         df = yf.get_data(
             ticker, start_date=start_date, end_date=end_data, interval="1d"
         )
-        stock = Sdf(df)
+        stock  = Sdf(df)
 
         # selecting graph type
 
@@ -324,12 +319,11 @@ def graph_genrator(n_clicks, ticker, chart_name):
 
             fig.update_xaxes(
                 rangeslider_visible=True,
-                rangeselector=dict(
-                    activecolor="blue",
-                    bgcolor=colors["background"],
+                rangeselector=dict(activecolor = 'blue',bgcolor = colors['background'],
                     buttons=list(
                         [
-                            dict(count=7, label="10D", step="day", stepmode="backward"),
+                            dict(count=7, label="10D",
+                                 step="day", stepmode="backward"),
                             dict(
                                 count=15, label="15D", step="day", stepmode="backward"
                             ),
@@ -342,12 +336,15 @@ def graph_genrator(n_clicks, ticker, chart_name):
                             dict(
                                 count=6, label="6m", step="month", stepmode="backward"
                             ),
-                            dict(count=1, label="1y", step="year", stepmode="backward"),
-                            dict(count=5, label="5y", step="year", stepmode="backward"),
-                            dict(count=1, label="YTD", step="year", stepmode="todate"),
+                            dict(count=1, label="1y", step="year",
+                                 stepmode="backward"),
+                            dict(count=5, label="5y", step="year",
+                                 stepmode="backward"),
+                            dict(count=1, label="YTD",
+                                 step="year", stepmode="todate"),
                             dict(step="all"),
                         ]
-                    ),
+                    )
                 ),
             )
 
@@ -376,12 +373,11 @@ def graph_genrator(n_clicks, ticker, chart_name):
 
             fig.update_xaxes(
                 rangeslider_visible=True,
-                rangeselector=dict(
-                    activecolor="blue",
-                    bgcolor=colors["background"],
+                rangeselector=dict(activecolor = 'blue',bgcolor = colors['background'],
                     buttons=list(
                         [
-                            dict(count=7, label="10D", step="day", stepmode="backward"),
+                            dict(count=7, label="10D",
+                                 step="day", stepmode="backward"),
                             dict(
                                 count=15, label="15D", step="day", stepmode="backward"
                             ),
@@ -394,12 +390,15 @@ def graph_genrator(n_clicks, ticker, chart_name):
                             dict(
                                 count=6, label="6m", step="month", stepmode="backward"
                             ),
-                            dict(count=1, label="1y", step="year", stepmode="backward"),
-                            dict(count=5, label="5y", step="year", stepmode="backward"),
-                            dict(count=1, label="YTD", step="year", stepmode="todate"),
+                            dict(count=1, label="1y", step="year",
+                                 stepmode="backward"),
+                            dict(count=5, label="5y", step="year",
+                                 stepmode="backward"),
+                            dict(count=1, label="YTD",
+                                 step="year", stepmode="todate"),
                             dict(step="all"),
                         ]
-                    ),
+                    )
                 ),
             )
 
@@ -408,7 +407,7 @@ def graph_genrator(n_clicks, ticker, chart_name):
             close_ma_10 = df.close.rolling(10).mean()
             close_ma_15 = df.close.rolling(15).mean()
             close_ma_30 = df.close.rolling(30).mean()
-            close_ma_100 = df.close.rolling(100).mean()
+            close_ma_100 =df.close.rolling(100).mean()
             fig = go.Figure(
                 data=[
                     go.Scatter(
@@ -436,12 +435,11 @@ def graph_genrator(n_clicks, ticker, chart_name):
 
             fig.update_xaxes(
                 rangeslider_visible=True,
-                rangeselector=dict(
-                    activecolor="blue",
-                    bgcolor=colors["background"],
+                rangeselector=dict(activecolor = 'blue',bgcolor = colors['background'],
                     buttons=list(
                         [
-                            dict(count=7, label="10D", step="day", stepmode="backward"),
+                            dict(count=7, label="10D",
+                                 step="day", stepmode="backward"),
                             dict(
                                 count=15, label="15D", step="day", stepmode="backward"
                             ),
@@ -454,12 +452,15 @@ def graph_genrator(n_clicks, ticker, chart_name):
                             dict(
                                 count=6, label="6m", step="month", stepmode="backward"
                             ),
-                            dict(count=1, label="1y", step="year", stepmode="backward"),
-                            dict(count=5, label="5y", step="year", stepmode="backward"),
-                            dict(count=1, label="YTD", step="year", stepmode="todate"),
+                            dict(count=1, label="1y", step="year",
+                                 stepmode="backward"),
+                            dict(count=5, label="5y", step="year",
+                                 stepmode="backward"),
+                            dict(count=1, label="YTD",
+                                 step="year", stepmode="todate"),
                             dict(step="all"),
                         ]
-                    ),
+                    )
                 ),
             )
 
@@ -487,12 +488,11 @@ def graph_genrator(n_clicks, ticker, chart_name):
 
             fig.update_xaxes(
                 rangeslider_visible=True,
-                rangeselector=dict(
-                    activecolor="blue",
-                    bgcolor=colors["background"],
+                rangeselector=dict(activecolor = 'blue',bgcolor = colors['background'],
                     buttons=list(
                         [
-                            dict(count=7, label="10D", step="day", stepmode="backward"),
+                            dict(count=7, label="10D",
+                                 step="day", stepmode="backward"),
                             dict(
                                 count=15, label="15D", step="day", stepmode="backward"
                             ),
@@ -505,21 +505,24 @@ def graph_genrator(n_clicks, ticker, chart_name):
                             dict(
                                 count=6, label="6m", step="month", stepmode="backward"
                             ),
-                            dict(count=1, label="1y", step="year", stepmode="backward"),
-                            dict(count=5, label="5y", step="year", stepmode="backward"),
-                            dict(count=1, label="YTD", step="year", stepmode="todate"),
+                            dict(count=1, label="1y", step="year",
+                                 stepmode="backward"),
+                            dict(count=5, label="5y", step="year",
+                                 stepmode="backward"),
+                            dict(count=1, label="YTD",
+                                 step="year", stepmode="todate"),
                             dict(step="all"),
                         ]
-                    ),
+                    )
                 ),
             )
 
         # Exponential moving average
         if chart_name == "EMA":
-            close_ema_10 = df.close.ewm(span=10).mean
-            close_ema_15 = df.close.ewm(span=15).mean
-            close_ema_30 = df.close.ewm(span=30).mean
-            close_ema_100 = df.close.ewm(span=100).mean
+            close_ema_10 =df.close.ewm(span = 10).mean
+            close_ema_15 = df.close.ewm(span = 15).mean
+            close_ema_30 = df.close.ewm(span = 30).mean
+            close_ema_100 = df.close.ewm(span = 100).mean
             fig = go.Figure(
                 data=[
                     go.Scatter(
@@ -549,12 +552,11 @@ def graph_genrator(n_clicks, ticker, chart_name):
 
             fig.update_xaxes(
                 rangeslider_visible=True,
-                rangeselector=dict(
-                    activecolor="blue",
-                    bgcolor=colors["background"],
+                rangeselector=dict(activecolor = 'blue',bgcolor = colors['background'],
                     buttons=list(
                         [
-                            dict(count=7, label="10D", step="day", stepmode="backward"),
+                            dict(count=7, label="10D",
+                                 step="day", stepmode="backward"),
                             dict(
                                 count=15, label="15D", step="day", stepmode="backward"
                             ),
@@ -567,26 +569,26 @@ def graph_genrator(n_clicks, ticker, chart_name):
                             dict(
                                 count=6, label="6m", step="month", stepmode="backward"
                             ),
-                            dict(count=1, label="1y", step="year", stepmode="backward"),
-                            dict(count=5, label="5y", step="year", stepmode="backward"),
-                            dict(count=1, label="YTD", step="year", stepmode="todate"),
+                            dict(count=1, label="1y", step="year",
+                                 stepmode="backward"),
+                            dict(count=5, label="5y", step="year",
+                                 stepmode="backward"),
+                            dict(count=1, label="YTD",
+                                 step="year", stepmode="todate"),
                             dict(step="all"),
                         ]
-                    ),
+                    )
                 ),
             )
 
         # Moving average convergence divergence
         if chart_name == "MACD":
-            df["MACD"], df["signal"], df["hist"] = (
-                stock["macd"],
-                stock["macds"],
-                stock["macdh"],
-            )
+            df["MACD"], df["signal"], df["hist"] = stock['macd'],stock['macds'],stock['macdh']
             fig = go.Figure(
                 data=[
                     go.Scatter(x=list(df.index), y=list(df.MACD), name="MACD"),
-                    go.Scatter(x=list(df.index), y=list(df.signal), name="Signal"),
+                    go.Scatter(x=list(df.index), y=list(
+                        df.signal), name="Signal"),
                     go.Scatter(
                         x=list(df.index),
                         y=list(df["hist"]),
@@ -606,12 +608,11 @@ def graph_genrator(n_clicks, ticker, chart_name):
 
             fig.update_xaxes(
                 rangeslider_visible=True,
-                rangeselector=dict(
-                    activecolor="blue",
-                    bgcolor=colors["background"],
+                rangeselector=dict(activecolor = 'blue',bgcolor = colors['background'],
                     buttons=list(
                         [
-                            dict(count=7, label="10D", step="day", stepmode="backward"),
+                            dict(count=7, label="10D",
+                                 step="day", stepmode="backward"),
                             dict(
                                 count=15, label="15D", step="day", stepmode="backward"
                             ),
@@ -624,24 +625,27 @@ def graph_genrator(n_clicks, ticker, chart_name):
                             dict(
                                 count=6, label="6m", step="month", stepmode="backward"
                             ),
-                            dict(count=1, label="1y", step="year", stepmode="backward"),
-                            dict(count=5, label="5y", step="year", stepmode="backward"),
-                            dict(count=1, label="YTD", step="year", stepmode="todate"),
+                            dict(count=1, label="1y", step="year",
+                                 stepmode="backward"),
+                            dict(count=5, label="5y", step="year",
+                                 stepmode="backward"),
+                            dict(count=1, label="YTD",
+                                 step="year", stepmode="todate"),
                             dict(step="all"),
                         ]
-                    ),
+                    )
                 ),
             )
 
             # Relative strength index
         if chart_name == "RSI":
-            rsi_6 = stock["rsi_6"]
-            rsi_12 = stock["rsi_12"]
-            fig = go.Figure(
+           rsi_6 = stock['rsi_6']
+           rsi_12 = stock['rsi_12']
+           fig = go.Figure(
                 data=[
-                    go.Scatter(x=list(df.index), y=list(rsi_6), name="RSI 6 Day"),
-                    go.Scatter(x=list(df.index), y=list(rsi_12), name="RSI 12 Day"),
-                ],
+                    go.Scatter(x=list(df.index), y=list(rsi), name="RSI 6 Day"),
+                    go.Scatter(x=list(df.index), y=list(rsi), name="RSI 12 Day")
+                    ],
                 layout={
                     "height": 900,
                     "title": chart_name,
@@ -651,14 +655,12 @@ def graph_genrator(n_clicks, ticker, chart_name):
                     "font": {"color": colors["text"]},
                 },
             )
-            fig.update_xaxes(
-                rangeslider_visible=True,
-                rangeselector=dict(
-                    activecolor="blue",
-                    bgcolor=colors["background"],
+           fig.update_xaxes(rangeslider_visible=True,
+                rangeselector=dict(activecolor = 'blue',bgcolor = colors['background'],
                     buttons=list(
                         [
-                            dict(count=7, label="10D", step="day", stepmode="backward"),
+                            dict(count=7, label="10D",
+                                 step="day", stepmode="backward"),
                             dict(
                                 count=15, label="15D", step="day", stepmode="backward"
                             ),
@@ -671,20 +673,22 @@ def graph_genrator(n_clicks, ticker, chart_name):
                             dict(
                                 count=6, label="6m", step="month", stepmode="backward"
                             ),
-                            dict(count=1, label="1y", step="year", stepmode="backward"),
-                            dict(count=5, label="5y", step="year", stepmode="backward"),
-                            dict(count=1, label="YTD", step="year", stepmode="todate"),
+                            dict(count=1, label="1y", step="year",
+                                 stepmode="backward"),
+                            dict(count=5, label="5y", step="year",
+                                 stepmode="backward"),
+                            dict(count=1, label="YTD",
+                                 step="year", stepmode="todate"),
                             dict(step="all"),
                         ]
-                    ),
+                    )
                 ),
             )
 
     end_data = datetime.now().date()
     start_date = datetime.now().date() - timedelta(days=30)
-    res_df = yf.get_data(
-        ticker, start_date=start_date, end_date=end_data, interval="1d"
-    )
+    res_df = yf.get_data(ticker, start_date=start_date,
+                         end_date=end_data, interval="1d")
     price = yf.get_live_price(ticker)
     prev_close = res_df.close.iloc[0]
     prev_high = np.array(res_df.high).max()
@@ -706,7 +710,8 @@ def graph_genrator(n_clicks, ticker, chart_name):
                     "bordercolor": "gray",
                     "steps": [
                         {"range": [0, prev_low], "color": "red"},
-                        {"range": [prev_close - 100, prev_high], "color": "green"},
+                        {"range": [prev_close - 100, prev_high],
+                            "color": "green"},
                     ],
                     "threshold": {
                         "line": {"color": "red", "width": 4},
@@ -749,3 +754,4 @@ def quotes_genrator(n_clicks, ticker):
 
 if __name__ == "__main__":
     app.run_server(debug=False)
+
