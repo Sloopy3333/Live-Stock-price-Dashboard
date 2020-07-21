@@ -17,7 +17,7 @@ import numpy
 colors = {"background": "#333333", "text": "#ffffff"}
 
 
-with open(r"D:\ML\Stock_screaner\tickers.pickle", "rb") as f:
+with open("tickers.pickle","rb") as f:
     ticker_list = pickle.load(f)
 
 
