@@ -9,7 +9,6 @@
 6. [Deployment](#deployment)
 7. [Tools Used](#tools)
 8. [Credits](#credits)
-9. [Team](#team)
 
 
 
@@ -97,18 +96,6 @@ server = app.server
   </tr>
  </table>
 
-## Team  
- <table>
-  <tr>
-    <td></td>
-     <td></td>
-     <td></td>
-  </tr>
-  <tr>
-    <td><img src=https://avatars3.githubusercontent.com/u/66351421?s=400&u=3e471a9a8305ee5d4e661c9e4b8194eeb7bc5a5d&v=4" width=360 height=480></td>
-    
-  </tr>
- </table>
 
  ## Credits  
  All live stock is collected by [Yahoo_fin](https://theautomatic.net/yahoo_fin-documentation/ "Yahoo_fin Documentation")  
