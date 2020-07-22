@@ -39,20 +39,20 @@ pip install -r requirements.txt
 ## Demo<a name  = "Demo"></a>
 #### Available plots
 
-![plots](img\plots.png)
+![plots](img/plots.png)
 
 #### Live price
 
-![plots](img\live_price.png)
+![plots](img/live_price.png)
 
 #### Live intractive graph 
 
-![plots](img\graph.png)
+![plots](img/graph.png)
 
 
 #### Example
 
-![Alt Text](img\example.gif)
+![Alt Text](img/example.gif)
 
 
 
