@@ -14,7 +14,7 @@
 
 
 ## Introduction <a name="introduction"></a>
- This project is a interactive Stock Dashboard with [Plotly dash](https://plotly.com/dash/ "Dash documentation") with some Technical  Indicators  like RSI ,MACD  etc this is a educational project not intented to use for any commercial purposes.  
+ This project is a Interactive Stock Dashboard with [Plotly dash](https://plotly.com/dash/ "Dash documentation") with some Technical  Indicators  like RSI ,MACD  etc this is a educational project not intented to use for any commercial purposes.  
 
 
 
@@ -46,7 +46,7 @@ pip install -r requirements.txt
 
 ![plots](img/live_price.png)
 
-#### Live intractive graph 
+#### Live Interactive graph 
 
 ![plots](img/graph.png)
 
