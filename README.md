@@ -77,8 +77,8 @@ server = app.server
      <td></td>
   </tr>
   <tr>
-    <td><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.SoTspTB3TK-eL22hA60q_AAAAA%26pid%3DApi&f=1" width=360 height=480></td>
-    <td><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.cm6BbHhR32jAoHiYxUS9kgHaDn%26pid%3DApi&f=1" width=360 height=480></td>
+    <td><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.SoTspTB3TK-eL22hA60q_AAAAA%26pid%3DApi&f=1" width=480 height=240></td>
+    <td><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.cm6BbHhR32jAoHiYxUS9kgHaDn%26pid%3DApi&f=1" width=480 height=240></td>
     
   </tr>
  </table>
@@ -91,7 +91,7 @@ server = app.server
      <td></td>
   </tr>
   <tr>
-    <td><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.OBF_Vq_-N8HcMOPTzBnJ9AHaCy%26pid%3DApi&f=1" width=720 height=480></td>
+    <td><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.OBF_Vq_-N8HcMOPTzBnJ9AHaCy%26pid%3DApi&f=1" width=480 height=240></td>
     
   </tr>
  </table>
