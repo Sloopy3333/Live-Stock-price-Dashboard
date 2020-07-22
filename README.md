@@ -24,6 +24,7 @@ Written on top of Flask, Plotly.js, and React.js, Dash is ideal for building dat
 Through a couple of simple patterns, Dash abstracts away all of the technologies and protocols that are required to build an interactive web-based application. Dash is simple enough that you can bind a user interface around your Python code in an afternoon.
 Dash apps are rendered in the web browser. You can deploy your apps to servers and then share them through URLs. Since Dash apps are viewed in the web browser, Dash is inherently cross-platform and mobile ready.
 
+
 ## Overview<a name  = "Overview"></a>
 
 This project aims towards displaying the live stock values and some technical indicators that helps traders to predict the stock behavior. For now the project contains some popular indicators and i am committed todards adding more in future. 
@@ -77,8 +78,8 @@ server = app.server
      <td></td>
   </tr>
   <tr>
-    <td><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.SoTspTB3TK-eL22hA60q_AAAAA%26pid%3DApi&f=1" width=270 height=480></td>
-    <td><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.cm6BbHhR32jAoHiYxUS9kgHaDn%26pid%3DApi&f=1" width=270 height=480></td>
+    <td><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.SoTspTB3TK-eL22hA60q_AAAAA%26pid%3DApi&f=1" width=360 height=480></td>
+    <td><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.cm6BbHhR32jAoHiYxUS9kgHaDn%26pid%3DApi&f=1" width=360 height=480></td>
     
   </tr>
  </table>
@@ -91,7 +92,7 @@ server = app.server
      <td></td>
   </tr>
   <tr>
-    <td><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.OBF_Vq_-N8HcMOPTzBnJ9AHaCy%26pid%3DApi&f=1" width=600 height=480></td>
+    <td><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.OBF_Vq_-N8HcMOPTzBnJ9AHaCy%26pid%3DApi&f=1" width=720 height=480></td>
     
   </tr>
  </table>
