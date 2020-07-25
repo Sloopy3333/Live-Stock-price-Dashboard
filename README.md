@@ -63,8 +63,7 @@ Dash app can be treated as a flask app and can be directly deployed in Heroku an
 server = app.server
 
 ```
-### Checkout the app [here](https://stockscreanerdash.herokuapp.com/ "Stock screaner") currently there is a issue in deployment standby 
-
+### Checkout the app [here](https://stockscreanerdash.herokuapp.com/ "Stock screaner")
 
 
 ## Tools used <a name="tools"></a>
