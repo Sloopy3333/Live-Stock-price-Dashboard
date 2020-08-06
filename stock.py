@@ -723,4 +723,4 @@ def quotes_genrator(n_clicks, ticker):
 
 if __name__ == "__main__":
 
-    app.run_server(debug=True)
+    app.run_server(debug=False)
