@@ -43,7 +43,7 @@ pip install -r requirements.txt
 
 #### Live price
 
-![plots](img/live_price.png)
+![plots](img/price.png)
 
 #### Live Interactive graph 
 
