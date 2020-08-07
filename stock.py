@@ -399,10 +399,10 @@ def graph_genrator(n_clicks, ticker, chart_name):
 
         # Exponential moving average
         if chart_name == "EMA":
-            close_ema_10 = df.close.ewm(span=10).mean
-            close_ema_15 = df.close.ewm(span=15).mean
-            close_ema_30 = df.close.ewm(span=30).mean
-            close_ema_100 = df.close.ewm(span=100).mean
+            close_ema_10 = df.close.ewm(span=10).mean()
+            close_ema_15 = df.close.ewm(span=15).mean()
+            close_ema_30 = df.close.ewm(span=30).mean()
+            close_ema_100 = df.close.ewm(span=100).mean()
             fig = go.Figure(
                 data=[
                     go.Scatter(
