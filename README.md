@@ -2,7 +2,7 @@
 
 # Table of contents
 1. [Introduction](#introduction)
-2. [What is Dash](#Dash)
+2. [What is Dash ?](#Dash)
 3. [Project Overview](#Overview)
 4. [Requirements](#req)
 5. [Demo](#Demo)
