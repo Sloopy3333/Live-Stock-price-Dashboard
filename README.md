@@ -77,7 +77,7 @@ server = app.server
 
 Community contributions are a welcome addition to the project. In order to be merged upsteam any additions will need to be formatted with [black](https://black.readthedocs.io) for consistency with the rest of the project and pass the continuous integration tests run against the PR.
 
-Bug reports are also welcome on the [issue page](https://github.com/SampathHN/My-passman/issues).
+Bug reports are also welcome on the [issue page](https://github.com/SampathHN/Live-Stock-price-Dashboard/issues).
 ## Tools used <a name="tools"></a>
 
 
