@@ -6,13 +6,10 @@ from stockstats import StockDataFrame as Sdf
 import dash_bootstrap_components as dbc
 import dash_table as dt
 import yahoo_fin.stock_info as yf
-from datetime import datetime, timedelta, date
 import plotly.graph_objs as go
+from datetime import datetime, timedelta
 import pickle
-import numpy as np
-import pandas as pd
 import random
-import numpy
 
 
 # defining style color

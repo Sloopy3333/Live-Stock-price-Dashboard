@@ -2,12 +2,10 @@ plotly==4.8.2
 dash==1.13.4
 stockstats==0.3.1
 dash_bootstrap_components==0.10.3
-pandas==1.0.5
 requests==2.24.0 
 requests-html==0.10.0 
 yahoo_fin==0.8.6
 dash_html_components==1.0.3
 dash_table==4.8.1
 dash_core_components==1.10.1
-numpy==1.19.0
 gunicorn==19.7.1
